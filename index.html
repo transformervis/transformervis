@@ -6,20 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualize Transformer Via Sparse Coding Demo</title>
 </head>
-<script>
-    function Visualize() {
-        var dim = document.getElementById("dim").value;
-        var layer = document.getElementById("layer").value;
-        // d_${dim}_l_${layer}.html
-        // fetch('./sparse_code_data/d_13_l_8.html')
-        fetch(`./sparse_code_data/d_${dim}_l_${layer}.html`)
-        .then(data => data.text())
-        .then(html => document.getElementById('p1').innerHTML = html);
-    }
-    function Clear() {
-        document.getElementById('p1').innerHTML = ' '
-    }
-    </script>
 <body>
     <h1>Entering the Transformer Factor and the embedding from which layer you want to visualize:</h2>
 
@@ -31,9 +17,13 @@
      <input type="number" id="dim" value="0"><br><br>
      <h3>Please enter an integer from 0,2,4,6,8,10, indicating the tranformer layer for word embedding:</h3>
      <input type="number" id="layer" value="0"><br><br>
+     <p><img id="myImage" src="./sparse_code_img/d_0.png" alt="Photo of a cottage"  /></p> 
      <input type="button" onclick="Visualize()" value="Visualize!">
      <input type="button" onclick="Clear()" value="Clear!">
-     <p id="p1"> </p>
+     <!-- <p id="p1"> </p> -->
+
+     <p id="t1"> </p>
+
 
      <h2>High Level:</h2>
      <h3>Visualizing high level information requires LIME to generate saliency map, which is very costly. We prepared some of those to you:</h3>
@@ -41,5 +31,27 @@
 
      
 </body>
+<!-- <script>
+    const image = document.createElement('img');
+    image.src = `./sparse_code_img/d_12.png`;
+    document.querySelector('.container').appendChild(image);
+</script> -->
+<script>
+    function Visualize() {
+        var dim = document.getElementById("dim").value;
+        var layer = document.getElementById("layer").value;
+        const image = document.getElementById("myImage");
+        image.src = `./sparse_code_img/d_${dim}.png`;
+        // document.querySelector('.container').appendChild(image);
+        // document.getElementById('t1').innerHTML = ' '
+        fetch(`./sparse_code_data/d_${dim}_l_${layer}.html`)
+        .then(data => data.text())
+        .then(html => document.getElementById('t1').innerHTML = html);  
+    }
 
+
+    function Clear() {
+        document.getElementById('t1').innerHTML = ' '
+    }
+    </script>
 </html>
