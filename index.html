@@ -13,13 +13,16 @@
     <input name="email" placeholder="please enter an integer value from 0 to 1499" type="number" id="myNumber" value="2"> </br>
      -->
      <h2>Low and Mid Level:</h2>
-     <h3>Please enter an integer from 0 to 1499, indicating the tranformer factor you want to visualize:</h3>
-     <input type="number" id="dim" value="0"><br><br>
+     <h3>Please enter an integer from 0 to 499, indicating the tranformer factor you want to visualize:</h3>
+     <input type="button" onclick="Low()" value="Give me a Random Low Level Transformer Factor!">
+     <input type="button" onclick="Mid()" value="Give me a Random Mid Level Transformer Factor!"><br><br>
+     <input type="number" id="dim" value="0"><br><br> 
      <h3>Please enter an integer from 0,2,4,6,8,10, indicating the tranformer layer for word embedding:</h3>
      <input type="number" id="layer" value="0"><br><br>
      <p><img id="myImage" src="./sparse_code_img/d_0.png" alt="Photo of a cottage"  /></p> 
      <input type="button" onclick="Visualize()" value="Visualize!">
      <input type="button" onclick="Clear()" value="Clear!">
+     
      <!-- <p id="p1"> </p> -->
 
      <p id="t1"> </p>
@@ -36,7 +39,10 @@
     image.src = `./sparse_code_img/d_12.png`;
     document.querySelector('.container').appendChild(image);
 </script> -->
+<script src="mid_level.js"></script>
+<script src="low_level.js"></script>
 <script>
+    const low = []
     function Visualize() {
         var dim = document.getElementById("dim").value;
         var layer = document.getElementById("layer").value;
@@ -47,6 +53,16 @@
         fetch(`./sparse_code_data/d_${dim}_l_${layer}.html`)
         .then(data => data.text())
         .then(html => document.getElementById('t1').innerHTML = html);  
+    }
+    function Low(){
+        var item = low_level[Math.floor(Math.random() * low_level.length)];
+        document.getElementById("dim").value = item;
+        document.getElementById("layer").value = 2;
+    }
+    function Mid(){
+        var item = mid_level[Math.floor(Math.random() * mid_level.length)];
+        document.getElementById("dim").value = item;
+        document.getElementById("layer").value = 8;
     }
 
 
