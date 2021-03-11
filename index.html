@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualize Transformer Via Sparse Coding Demo</title>
+</head>
+<script>
+    function Visualize() {
+        var dim = document.getElementById("dim").value;
+        var layer = document.getElementById("layer").value;
+        // d_${dim}_l_${layer}.html
+        // fetch('./sparse_code_data/d_13_l_8.html')
+        fetch(`./sparse_code_data/d_${dim}_l_${layer}.html`)
+        .then(data => data.text())
+        .then(html => document.getElementById('p1').innerHTML = html);
+    }
+    function Clear() {
+        document.getElementById('p1').innerHTML = ' '
+    }
+    </script>
+<body>
+    <h1>Entering the Transformer Factor and the embedding from which layer you want to visualize:</h2>
+
+    <!-- <input name="email" placeholder="please enter an integer value from 0 to 1499">
+    <input name="email" placeholder="please enter an integer value from 0 to 1499" type="number" id="myNumber" value="2"> </br>
+     -->
+     <h2>Low and Mid Level:</h2>
+     <h3>Please enter an integer from 0 to 1499, indicating the tranformer factor you want to visualize:</h3>
+     <input type="number" id="dim" value="0"><br><br>
+     <h3>Please enter an integer from 0,2,4,6,8,10, indicating the tranformer layer for word embedding:</h3>
+     <input type="number" id="layer" value="0"><br><br>
+     <input type="button" onclick="Visualize()" value="Visualize!">
+     <input type="button" onclick="Clear()" value="Clear!">
+     <p id="p1"> </p>
+
+     <h2>High Level:</h2>
+     <h3>Visualizing high level information requires LIME to generate saliency map, which is very costly. We prepared some of those to you:</h3>
+     <input type="button" onclick="Visualize_High()" value="Visualize High Level!">
+
+     
+</body>
+
+</html>
