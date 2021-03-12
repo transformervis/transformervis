@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualize Transformer Via Sparse Coding Demo</title>
+    <title>Transformer Visualization via Dictionary Learning Demo</title>
 </head>
 <body>
-    <h1>Entering the Transformer Factor and the embedding from which layer you want to visualize:</h2>
+    <h1>Entering the transformer factor and the embedding from which layer you want to visualize:</h2>
 
     <!-- <input name="email" placeholder="please enter an integer value from 0 to 1499">
     <input name="email" placeholder="please enter an integer value from 0 to 1499" type="number" id="myNumber" value="2"> </br>
      -->
      <h2>Low and Mid Level:</h2>
      <h3>Please enter an integer from 0 to 499, indicating the tranformer factor you want to visualize:</h3>
-     <input type="button" onclick="Low()" value="Give me a Random Low Level Transformer Factor!">
-     <input type="button" onclick="Mid()" value="Give me a Random Mid Level Transformer Factor!"><br><br>
+     <input type="button" onclick="Low()" value="Give me a random low level rransformer factor!">
+     <input type="button" onclick="Mid()" value="Give me a random mid level rransformer factor!"><br><br>
      <input type="number" id="dim" value="0"><br><br> 
      <h3>Please enter an integer from 0,2,4,6,8,10, indicating the tranformer layer for word embedding:</h3>
      <input type="number" id="layer" value="0"><br><br>
@@ -30,7 +30,8 @@
 
      <h2>High Level:</h2>
      <h3>Visualizing high level information requires LIME to generate saliency map, which is very costly. We prepared some of those to you:</h3>
-     <input type="button" onclick="Visualize_High()" value="Visualize High Level!">
+     <input type="button" onclick="Visualize_High()" value="Visualize a high Level transformer factor!">
+     <input type="button" onclick="Clear()" value="Clear!">
      <p id="t2"></p>
      
 </body>
@@ -62,16 +63,38 @@
         }
     }
     function Visualize() {
-        error_check()
+        // error_check()
+        const layers = [0,2,4,6,8,10]
+        message = document.getElementById("p01");
+        message.innerHTML = "";
         var dim = document.getElementById("dim").value;
         var layer = document.getElementById("layer").value;
         const image = document.getElementById("myImage");
-        image.src = `./sparse_code_img/d_${dim}.png`;
+        try { 
+            if(layer == "" || dim == "")  throw "empty";
+            if(isNaN(layer)||isNaN(dim)) throw "not a number";
+            layer = Number(layer);
+            dim = Number(dim);
+            if(dim < 0)  throw "too low";
+            if(dim > 500)  throw "too high";
+            if(!layers.includes(layer) ) throw "Enter a layer from 0,2,4,6,8,10";
+            image.src = `./sparse_code_img/d_${dim}.png`;
         // document.querySelector('.container').appendChild(image);
         // document.getElementById('t1').innerHTML = ' '
         fetch(`./sparse_code_data/d_${dim}_l_${layer}.html`)
         .then(data => data.text())
         .then(html => document.getElementById('t1').innerHTML = html);  
+        }
+        catch(err) {
+            message.innerHTML = "<h2> Error: "+err + "! </h2> <br>";
+            Clear()
+        }
+        // image.src = `./sparse_code_img/d_${dim}.png`;
+        // // document.querySelector('.container').appendChild(image);
+        // // document.getElementById('t1').innerHTML = ' '
+        // fetch(`./sparse_code_data/d_${dim}_l_${layer}.html`)
+        // .then(data => data.text())
+        // .then(html => document.getElementById('t1').innerHTML = html);  
     }
     function Low(){
         var item = low_level[Math.floor(Math.random() * low_level.length)];
