@@ -19,19 +19,19 @@
      <input type="number" id="dim" value="0"><br><br> 
      <h3>Please enter an integer from 0,2,4,6,8,10, indicating the tranformer layer for word embedding:</h3>
      <input type="number" id="layer" value="0"><br><br>
-     <p><img id="myImage" src="./sparse_code_img/d_0.png" alt="Photo of a cottage"  /></p> 
+     <p><img id="myImage" src="./sparse_code_img/default.png" alt="Photo of a cottage"  /></p> 
      <input type="button" onclick="Visualize()" value="Visualize!">
      <input type="button" onclick="Clear()" value="Clear!">
      
      <!-- <p id="p1"> </p> -->
-
-     <p id="t1"> </p>
+     <p id="p01"></p>
+     <p id="t1"></p>
 
 
      <h2>High Level:</h2>
      <h3>Visualizing high level information requires LIME to generate saliency map, which is very costly. We prepared some of those to you:</h3>
      <input type="button" onclick="Visualize_High()" value="Visualize High Level!">
-
+     <p id="t2"></p>
      
 </body>
 <!-- <script>
@@ -42,8 +42,27 @@
 <script src="mid_level.js"></script>
 <script src="low_level.js"></script>
 <script>
-    const low = []
+    function error_check() {
+        const layers = [0,2,4,6,8,10]
+        var dim = document.getElementById("dim").value;
+        var layer = document.getElementById("layer").value;
+        message = document.getElementById("p01");
+        message.innerHTML = "";
+        try { 
+            if(layer == "" || dim == "")  throw "empty";
+            if(isNaN(layer)||isNaN(dim)) throw "not a number";
+            layer = Number(layer);
+            dim = Number(dim);
+            if(dim < 0)  throw "too low";
+            if(dim > 500)  throw "too high";
+            if(layers.includes(layer) ) throw "Enter a layer from 0,2,4,6,8,10";
+        }
+        catch(err) {
+            message.innerHTML = err;
+        }
+    }
     function Visualize() {
+        error_check()
         var dim = document.getElementById("dim").value;
         var layer = document.getElementById("layer").value;
         const image = document.getElementById("myImage");
@@ -64,10 +83,17 @@
         document.getElementById("dim").value = item;
         document.getElementById("layer").value = 8;
     }
+    function Visualize_High(){
+        let index = Math.floor(Math.random() * 6)
+        fetch(`./sparse_code_data_high/${index}.html`)
+        .then(data => data.text())
+        .then(html => document.getElementById('t2').innerHTML = html); 
+    }
 
 
     function Clear() {
         document.getElementById('t1').innerHTML = ' '
+        document.getElementById('t2').innerHTML = ' '
     }
     </script>
 </html>
