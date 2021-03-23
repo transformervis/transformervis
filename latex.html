@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Don't delete!</title>
+<script type="text/javascript" charset="utf-8" src="
+https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,
+https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
+</head>
+<body>
+
+<p>This website serve as an interative tool to visualize transformer model by its latent space. 
+    The detail of the method is explained in this paper.</p>
+<h2>Introduction</h2>
+<p>Word embedding vectors can be factorized into a sparse linear combination of word factors</p>
+<p>\begin{align*}
+    % \vspace{-0.2in}
+        \text{apple} =& 0.09``\text{dessert}" + 0.11``\text{organism}" + 0.16 ``\text{fruit}"  + 0.22``\text{mobile&IT}" + 0.42``\text{other}".
+    \end{align*}</p>
+<p>We view the latent representation of words in a transformer as contextualized word embedding. 
+    Similarly, our hypothesis is that a contextualized word embedding vector can also be factorized as a sparse linear superposition of a set of elementary elements, which we call <b>transformer factors</b>. </p>
+<p>To actually get those word vectors, we feed many sentences into a transformer model and collect their hidden states. 
+    Formally, let $S$ be the set of all sequences, $ X^{(l)} = \{x^{(l)}(s,i)| s \in S, i \in \left[0, len(s)\right] \}$, and $X = X^{(1)} \cup X^{(2)} \cup \cdots \cup X^{(L)}$. $\forall x\in X$, we assume $x$ is a sparse linear superposition of transformer factors:
+    $$\label{sparse}
+        x = \Phi \alpha + \epsilon, \ s.t. \  \alpha \succeq 0,
+    $$
+</p>
+<p>where $\Phi\in{\rm I\!R}^{d\times m}$ is a dictionary matrix with columns
+     $\Phi_{:,c}\ $, $\alpha \in{\rm I\!R}^m$ is a sparse vector of
+      coefficients to be inferred and $\epsilon$ is a vector 
+      containing independent Gaussian noise samples, which are assumed to be small relative to $x$.
+      Each column $\Phi_{:,c}\ $ of $\Phi$ is a {\it transformer factor} and its corresponding sparse coefficient $\alpha_c$ is its activation level. </p>
+<p>How we actually learned the dictionary is explained in the paper.</p>
+<p>we can try to visualize the transformer factors. For a transformer factor $\Phi_{:,c}$ and for a layer-$l$, we denote the 1000 contextualized word vectors with the largest sparse coefficients $\alpha^{(l)}_c$'s as $X^{(l)}_c \subset X^{(l)}$, which correspond to 1000 different sequences $S^{(l)}_c \subset S$</p>
+
+<p>In the following box, input a number $c$ indicating the transformer factor $\Phi_{:,c}$ you want to visualize</p>
+<p>We also includes the "Importance Score" for each transformer factor $\Phi_{:,c}$. 
+    The importance scores reflect the average activation of $\Phi_{:,c}$ in different layers.    
+</p>
+
+<h2>Problem</h2>
+
+<p>For sequences of numbers, <em>limit inferior</em> and <em>limit
+superior</em> are defined as $\liminf (a_n):=\sup\{\inf\{a_k:k \ge
+n\}\}$ and $\limsup (a_n):=\inf\{\sup\{a_k:k \ge n\}\}$ respectively;
+for sequences of sets, they are defined as $\displaystyle
+\bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} A_k$ and $\displaystyle
+\bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k$ respectively.</p>
+
+<p><strong>Why are they consistent?</strong></p>
+
+<h2>Discussion</h2>
+
+<p>It suffices to find a relation between '&lt;' and '&sube;': $\{x
+\le a\} \subseteq \{x \le b\} \iff a \le b$.</p>
+
+<p>Claim: $\displaystyle \bigcup_{a \in A} \{x \le a\} = \{x \le \sup
+A\}$.</p>
+
+<p><em>Proof</em>:</p>
+
+<div class="myeqn">
+\[
+  \begin{aligned}
+    & x \in \bigcup_{a \in A} \{x \le a\} \\
+    \iff& x \le a \;\forall a \in A \\
+    \iff& x \text{ is a lower bound of } A \\
+    \iff& x \le \inf A
+  \end{aligned}
+\]
+</div>
+
+<p>The last step is due to the defintion of infimum (<em>greatest</em>
+lower bound).</p>
+
+<p>With the above claim, one has</p>
+
+<div class="myeqn">
+\[
+  \begin{aligned}
+    & \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} \{x \le a_k\} \\
+    =& \bigcap_{n=1}^{\infty} \bigcup_{a \in \{a_k:k \ge n\}} \{x \le a\} \\
+    =& \bigcap_{n=1}^{\infty} \{ x \le \sup \{a_k:k \ge n\}\} \\
+    =& \{x \le \inf\sup \{a_k:k \ge n\}\}
+  \end{aligned}
+\]
+</div>
+
+<p>Hence, one can see that $\sup\inf \{a_k:k \ge n\} \le \inf\sup
+\{a_k:k \ge n\}$ and $\displaystyle \bigcup_{n=1}^{\infty}
+\bigcap_{k=n}^{\infty} \{x \le a_k\} \subseteq \bigcap_{n=1}^{\infty}
+\bigcup_{k=n}^{\infty} \{x \le a_k\}$ share something in common.</p>
+
+<p>
+<a href="//validator.w3.org/check?uri=referer"><img
+  src="/images/valid-html401.png" alt="Valid HTML 4.01 Strict"
+  height="31" width="88"></a>
+<a href="//jigsaw.w3.org/css-validator/check/referer"><img
+  src="/images/valid-css.png" alt="Valid CSS" height="31" width="88">
+</a></p>
+</body>
+</html>
