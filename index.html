@@ -52,6 +52,22 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+.block_fake{
+/* margin-right: auto; 1 */
+width: 10%; /* 2 */
+display: block;
+border: none;
+background-color:cornflowerblue;
+color: white;
+padding: 10px 0px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+display: inline;
+}
+
+
 .block{
 /* margin-right: auto; 1 */
 margin-left:  auto; 
@@ -177,19 +193,17 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
 </p>
 <h2>Visualization</h2>
 <p>In the following box, input a number $c$ indicating the transformer factor $\Phi_{:,c}$ you want to visualize.
-    Then click the buttom button ``visualize!'' to visualize this transformer factor at a particular layer.
+    Then click the button "<button class="block_fake" width= "20" >Visualize!</button>" to visualize this transformer factor at a particular layer.
     For a transformer factor $\Phi_{:,c}$ and for a layer-$l$, The visualization is done by 
     listing the 200 word and context with the largest sparse coefficients $\alpha^{(l)}_c$'s
 </p>
-<p>We also includes the "Importance Score" for each transformer factor $\Phi_{:,c}$. 
-    The importance scores reflect the average activation of $\Phi_{:,c}$ in different layers.    
-</p>
+
         <!-- <h2>Low and Mid Level:</h2> -->
         <input type="number" id="dim" value="0" onchange="changeimage()"> <h3>← Enter an integer from 0 to 531, indicating the transformer factor you want to visualize.</h3><br><br>
-        <h3>Alternatively, you can click the three buttom below to get a random low level, mid level or high level transformer factor:</h3>
+        <p>Alternatively, you can click the three buttom below to get a random low level, mid level or high level transformer factor:</p>
         <input type="button" class="but" onclick="Low()" value="Give me a random low level transformer factor!"><br><br>
         <input type="button" class="but" onclick="Mid()" value="Give me a random mid level transformer factor!"><br><br>
-        <input type="button" style="display:inline"class="but" onclick="High()" value="Give me a random high level transformer factor!"> <p style="display:inline">← (We generate saliency map for high level transformer factor using LIME)</p><br><br>
+        <input type="button" style="display:inline" class="but" onclick="High()" value="Give me a random high level transformer factor!"> <p style="display:inline">← (We generate saliency map for high level transformer factor using LIME)</p><br><br>
         <!-- <h3>Please enter an integer from 0,2,4,6,8,10, indicating the tranformer layer for word embedding:</h3>
         <input type="number" id="layer" value="0"><br><br> -->
         <!-- <img id="myImage" src="./sparse_code_img/default.png" alt="IS curve"  />  -->
@@ -304,7 +318,13 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
             </div>
             <div class="container_0"></div>
             <div class = "container_2">
-                <img id="myImage" src="./sparse_code_img/default.png" alt="IS curve"  />
+                <div><p style="float: right;"><img id="myImage" style="display:inline" src="./sparse_code_img/d_0.png" alt="IS curve"  /></p>
+                    <br></b><p>This is the "importance score" for this transformer factor. 
+                        The importance score reflects the average activation of this transformer factor in different layers.</p>
+                    </div><br><br><br>
+                <!-- <p style="display:inline">We also includes the "Importance Score" for each transformer factor $\Phi_{:,c}$. 
+                    The importance scores reflect the average activation of $\Phi_{:,c}$ in different layers.    
+                </p> <div><img id="myImage" style="display:inline" src="./sparse_code_img/d_0.png" alt="IS curve"  /></div> -->
                 <p id="t1"></p>
                 <p id="p01"></p>
             </div>
