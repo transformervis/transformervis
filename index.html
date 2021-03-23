@@ -170,12 +170,11 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
 <p>\begin{align*}
     % \vspace{-0.2in}
     \text{apple} =& 0.09``\text{dessert}" + 0.11``\text{organism}" + \\ & 0.16``\text{fruit}" 
-     + 0.22``\text{mobile\&IT}" + 0.42``\text{other}".
+     + 0.22``\text{mobile&IT}" + 0.42``\text{other}".
     \end{align*}</p>
 <p>We view the latent representation of words in a transformer as contextualized word embedding. 
     Similarly, our hypothesis is that a contextualized word embedding vector can also be factorized as a sparse linear superposition of a set of elementary elements, which we call <b>transformer factors</b>. </p>
-<p>To actually get those word vectors, we feed many sentences into a transformer model and collect their hidden states. 
-    Formally, let $S$ be the set of all sequences, $ X^{(l)} = \{x^{(l)}(s,i)| s \in S, i \in \left[0, len(s)\right] \}$, and $X = X^{(1)} \cup X^{(2)} \cup \cdots \cup X^{(L)}$. $\forall x\in X$, we assume $x$ is a sparse linear superposition of transformer factors:
+<p>We feed many sentences into a transformer model. Then we collect the hidden state for each word from each layer. Let $X$ be set of hidden states from each layer, $\forall x \in X$, we assume $x$ is a sparse linear superposition of transformer factors:
     $$\label{sparse}
         x = \Phi \alpha + \epsilon, \ s.t. \  \alpha \succeq 0,
     $$
@@ -189,7 +188,7 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
     are divided into three different levels: low level, mid level and high level: <br><br>
     Low level transformer factors correspond to word-level disambiguation. <br><br>
     Mid level transformer factors correspond to sentence-level patterns. <br><br>
-    High level transformer factors correspond to long range patterns. <br><br> The details on how to divide those transformer factors into three levels is explained in the paper.
+    High level transformer factors correspond to long range patterns. <br><br> The details on how to divide those transformer factors into three levels is also explained in the paper.
 </p>
 <h2>Visualization</h2>
 <p>In the following box, input a number $c$ indicating the transformer factor $\Phi_{:,c}$ you want to visualize.
