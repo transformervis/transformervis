@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization</title>
+</head>
+<style>
+    .wrapper {
+  margin-right: auto; /* 1 */
+  margin-left:  auto; /* 1 */
+
+  max-width: 80%; /* 2 */
+
+  padding-right: 10px; /* 3 */
+  padding-left:  10px; /* 3 */
+}
+.container_main{
+    margin-right: auto; /* 1 */
+  /* margin-left:  auto; 1 */
+
+  max-width: 100%; /* 2 */
+  /* height: 600px; */
+  /* background-color: brown; */
+  display:flex;
+  
+}
+.container_model{
+
+  width: 20%; /* 2 */
+  /* height: 400px; */
+  /* background-color:bisque; */
+}
+
+.container_sparse_code{
+
+width: 40%; /* 2 */
+/* height: 400px; */
+/* background-color:bisque; */
+}
+.bert{
+margin-right: auto; /* 1 */
+margin-left:  auto; 
+width: 100%; /* 2 */
+/* height: 130px; */
+/* background-color:pink; */
+}
+.block{
+/* margin-right: auto; 1 */
+margin-left:  auto; 
+width: 40%; /* 2 */
+display: block;
+border: none;
+background-color:cornflowerblue;
+color: white;
+padding: 10px 28px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+}
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+.block_placeholder{
+/* margin-right: auto; 1 */
+margin-left:  auto;
+width: 50%; /* 2 */
+display: block;
+border: none;
+font-size: 16px;
+background-color:white;
+/* background-color:cornflowerblue; */
+padding: 10px 28px;
+}
+.hidden{
+margin-right: auto; /* 1 */
+margin-left:  auto; 
+width:100%; /* 2 */
+/* height: 30px; */
+/* background-color:salmon; */
+text-align:center;
+}
+.container_2{
+  width: 80%; /* 2 */
+  height: 200px;
+  background-color:palegreen;
+}
+
+
+</style>
+<body>
+<div class = "wrapper">
+    
+    <h1>Entering the transformer factor and the embedding from which layer you want to visualize:</h2>
+
+        <!-- <input name="email" placeholder="please enter an integer value from 0 to 1499">
+        <input name="email" placeholder="please enter an integer value from 0 to 1499" type="number" id="myNumber" value="2"> </br>
+            -->
+    <h2>Low and Mid Level:</h2>
+    <h3>Please enter an integer from 0 to 499, indicating the tranformer factor you want to visualize:</h3>
+    <div class = "container_main">
+        <div class = "container_model">
+            <button class="block_placeholder">⠀</button>
+            <div class = "hidden">
+            <img
+            src="vis.svg"
+            alt="embedding" />
+            </div>
+            <div class = "bert">
+                <img
+                src="trans.svg"
+                alt="embedding" />
+            </div>
+            <div class = "hidden">
+                <img
+                src="vis.svg"
+                alt="embedding" />
+                </div>
+                <div class = "bert">
+                    <img
+                    src="trans.svg"
+                    alt="embedding" />
+                </div>
+                <div class = "hidden">
+                    <img
+                    src="vis.svg"
+                    alt="embedding" />
+                    </div>
+                    <div class = "bert">
+                        <img
+                        src="trans.svg"
+                        alt="embedding" />
+                    </div>
+                    <div class = "hidden">
+                        <img
+                        src="vis.svg"
+                        alt="embedding" />
+                        </div>
+                        <div class = "bert">
+                            <img
+                            src="trans.svg"
+                            alt="embedding" />
+                        </div>
+                        <div class = "hidden">
+                            <img
+                            src="vis.svg"
+                            alt="embedding" />
+                            </div>
+                            <div class = "bert">
+                                <img
+                                src="trans.svg"
+                                alt="embedding" />
+                            </div>
+                            <div class = "hidden">
+                                <img
+                                src="vis.svg"
+                                alt="embedding" />
+                                </div>
+                                <div class = "bert">
+                                    <img
+                                    src="trans.svg"
+                                    alt="embedding" />
+                                </div>
+
+        </div>
+        <div class = "container_sparse_code">
+            <button class="block">Visualize!</button>
+            <div class = "hidden">
+            <img
+            src="sparse.svg"
+            alt="embedding" />
+            </div>
+            <button class="block">Visualize!</button>
+            
+            <div class = "hidden">
+                <img
+                src="sparse.svg"
+                alt="embedding" />
+                </div>
+                <button class="block">Visualize!</button>
+            <div class = "hidden">
+                <img
+                src="sparse.svg"
+                alt="embedding" />
+                </div>
+                <button class="block">Visualize!</button>
+                <div class = "hidden">
+                    <img
+                    src="sparse.svg"
+                    alt="embedding" />
+                    </div>
+                    <button class="block">Visualize!</button>
+                <div class = "hidden">
+                    <img
+                    src="sparse.svg"
+                    alt="embedding" />
+                    </div>
+                    <button class="block">Visualize!</button>
+                    <div class = "hidden">
+                        <img
+                        src="sparse.svg"
+                        alt="embedding" />
+                        </div>
+                    <div class = "bert"></div>
+                
+            
+        </div>
+        <div class = "container_2">
+            123
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
