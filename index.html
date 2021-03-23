@@ -174,7 +174,7 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
     \end{align*}</p>
 <p>We view the latent representation of words in a transformer as contextualized word embedding. 
     Similarly, our hypothesis is that a contextualized word embedding vector can also be factorized as a sparse linear superposition of a set of elementary elements, which we call <b>transformer factors</b>. </p>
-<p>We feed many sentences into a transformer model. Then we collect the hidden state for each word from each layer. Let $X$ be set of hidden states from each layer, $\forall x \in X$, we assume $x$ is a sparse linear superposition of transformer factors:
+<p>We feed many sentences into a transformer model. Then we collect the hidden state for each word from each layers. Let $X$ be set of hidden states from different layers, $\forall x \in X$, we assume $x$ is a sparse linear superposition of transformer factors:
     $$\label{sparse}
         x = \Phi \alpha + \epsilon, \ s.t. \  \alpha \succeq 0,
     $$
@@ -184,7 +184,7 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
       coefficients to be inferred and $\epsilon$ is a vector 
       containing independent Gaussian noise samples, which are assumed to be small relative to $x$.
       Each column $\Phi_{:,c}\ $ of $\Phi$ is a <b>transformer factor</b> and its corresponding sparse coefficient $\alpha_c$ is its activation level. </p>
-<p>How we actually learned the dictionary is explained in the paper. Transformer factors $\Phi_{:,c}$ 
+<p>How the dictionary is learned is explained in the paper. Transformer factors $\Phi_{:,c}$ 
     are divided into three different levels: low level, mid level and high level: <br><br>
     Low level transformer factors correspond to word-level disambiguation. <br><br>
     Mid level transformer factors correspond to sentence-level patterns. <br><br>
@@ -193,7 +193,7 @@ https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
 <h2>Visualization</h2>
 <p>In the following box, input a number $c$ indicating the transformer factor $\Phi_{:,c}$ you want to visualize.
     Then click the button "<button class="block_fake" width= "20" >Visualize!</button>" to visualize this transformer factor at a particular layer.
-    For a transformer factor $\Phi_{:,c}$ and for a layer-$l$, The visualization is done by 
+    For a transformer factor $\Phi_{:,c}$ and for a layer-$l$, the visualization is done by 
     listing the 200 word and context with the largest sparse coefficients $\alpha^{(l)}_c$'s
 </p>
 
